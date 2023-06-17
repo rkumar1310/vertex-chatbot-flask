@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  my-app:
+    build: .
+    volumes:
+      - ./credentials/turnkey-mender-389413-2e8bf26a1af2.json:/app/service-account.json # replace with actual path to your service account key file
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/service-account.json
+      - MONGODB_URL=mongodb://host.docker.internal:27017
+    ports:
+      - "5000:5000"
+    command: python chat.py # replace with your python file
